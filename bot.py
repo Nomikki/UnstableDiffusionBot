@@ -194,6 +194,8 @@ async def gene(ctx, prompt: str,
     response = requests.post(url=f'{URL}/sdapi/v1/txt2img', json=payload)
     r = response.json()
         
+    embeds = []
+    k = 0
     for i in r['images']:
         image = Image.open(io.BytesIO(base64.b64decode(i.split(",",1)[0])))
     
@@ -204,14 +206,19 @@ async def gene(ctx, prompt: str,
     
         pnginfo = PngImagePlugin.PngInfo()
         pnginfo.add_text("parameters", response2.json().get("info"))
-        image.save('output.png', pnginfo=pnginfo)
-        await ctx.send(file=discord.File('output.png'))
+        filename = f'output_{k}.png'
+        image.save(filename, pnginfo=pnginfo)
+        embeds.append(discord.File(filename));
+        rr = len(r['images'])
+        print(f'{k} / {rr}')
+        k = k + 1
+    print('-------------\n')
+        #await ctx.send(file=discord.File('output.png'))
     
-    
-
-
-
+    await ctx.send(files = embeds)
     await ctx.respond('done! ^_^')
+
+
 
 
 @bot.event
