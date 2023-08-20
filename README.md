@@ -9,5 +9,6 @@ A simple little frontend bot
 6. Clone this repository and create an `.env` file in the project's root directory. The file's content should be:
    `DISCORD_TOKEN={your bot's token}`
 7. Open `bot.py` and modify the URL variable to fit your needs.
-8. Run the script `python bot.py`. If you don't see any error messages in the terminal, everything should be working.
-9. Test the bot's functionality in Discord by typing `/dream`.
+8  Run `pip install requirements.txt`
+9. Run the script `python bot.py`. If you don't see any error messages in the terminal, everything should be working.
+10. Test the bot's functionality in Discord by typing `/dream`.
